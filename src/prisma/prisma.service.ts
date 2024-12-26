@@ -13,4 +13,11 @@ export class PrismaService extends PrismaClient{
             }
         })
     }
+    //cleanup should be done before e2e testing
+    cleanup(){
+        return this.$transaction([
+            this.bookmark.deleteMany(),
+            this.user.deleteMany()
+        ])
+    }
 }
